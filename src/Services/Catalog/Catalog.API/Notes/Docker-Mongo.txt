@@ -1,0 +1,7 @@
+Mongo Run
+	docker run -d -p 27017:27017 --name catalog-mongo mongo
+	docker logs -f catalog-mongo
+	docker exec -it catalog-mongo bash
+
+	> mongosh
+	> show dbs
