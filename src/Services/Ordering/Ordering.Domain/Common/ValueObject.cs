@@ -44,3 +44,4 @@ namespace Ordering.Domain.Common
                 .Aggregate((x, y) => x ^ y);
         }
     }
+}
