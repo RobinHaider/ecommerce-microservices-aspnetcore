@@ -1,4 +1,5 @@
-﻿using Basket.API.Entities;
+﻿using AutoMapper;
+using Basket.API.Entities;
 using Basket.API.GrpcServices;
 using Basket.API.Repositories;
 using Microsoft.AspNetCore.Http;
@@ -13,11 +14,13 @@ namespace Basket.API.Controllers
     {
         private readonly IBasketRepository _repository;
         private readonly DiscountGrpcService _discountGrpcService;
+        private readonly IMapper _mapper;
 
-        public BasketController(IBasketRepository repository, DiscountGrpcService discountGrpcService)
+        public BasketController(IBasketRepository repository, DiscountGrpcService discountGrpcService, IMapper mapper)
         {
             _repository = repository ?? throw new ArgumentNullException(nameof(repository));
             _discountGrpcService = discountGrpcService ?? throw new ArgumentNullException(nameof(discountGrpcService));
+            _mapper = mapper ?? throw new ArgumentNullException(nameof(mapper));
         }
 
         [HttpGet("{userName}", Name = "GetBasket")]
