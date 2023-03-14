@@ -82,6 +82,7 @@ services:
       - "GrpcSettings:DiscountUrl=http://discount.grpc"
     depends_on:
       - basketdb
+      - rabbitmq
     ports:
       - "8001:80"
 
