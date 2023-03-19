@@ -1,3 +1,4 @@
+using Ocelot.Cache.CacheManager;
 using Ocelot.DependencyInjection;
 using Ocelot.Middleware;
 
@@ -11,7 +12,11 @@ builder.Host.ConfigureAppConfiguration((hostingContext, config) =>
 });
 
 
-builder.Services.AddOcelot();
+builder.Services.AddOcelot()
+    .AddCacheManager(x =>
+    {
+        x.WithDictionaryHandle();
+    });
 
 var app = builder.Build();
 
