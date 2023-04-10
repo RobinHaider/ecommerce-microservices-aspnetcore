@@ -3,6 +3,8 @@ using IdentityServer4.Test;
 
 var builder = WebApplication.CreateBuilder(args);
 
+builder.Services.AddControllersWithViews();
+
 builder.Services.AddIdentityServer()
     .AddInMemoryClients(Config.Clients)
                 .AddInMemoryApiScopes(Config.ApiScopes)
@@ -12,9 +14,18 @@ builder.Services.AddIdentityServer()
 
 var app = builder.Build();
 
+app.UseStaticFiles();
 app.UseRouting();
 app.UseIdentityServer();
 
-app.MapGet("/", () => "Hello World!");
+app.UseAuthorization();
+
+app.UseEndpoints(endpoints =>
+{
+    app.UseEndpoints(endpoints =>
+    {
+        endpoints.MapDefaultControllerRoute();
+    });
+});
 
 app.Run();
